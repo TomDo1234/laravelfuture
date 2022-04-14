@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\NABAPI;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,5 @@ Route::get('/', function () {
 Route::get('/', function () {
     return view('homepage');
 });
+
+Route::post('/nab.com', [NABAPI::class, 'request']);

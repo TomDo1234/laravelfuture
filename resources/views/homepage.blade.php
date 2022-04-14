@@ -20,6 +20,7 @@
                 font-family: 'Nunito', sans-serif;
             }
         </style>
+        <script defer src="{{asset('js/index.js')}}"></script>
     </head>
     <body class="antialiased">
         <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
@@ -47,11 +48,12 @@
                 <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
                     <div class="grid grid-cols-1 md:grid-cols-2">
                         <div class="p-6">
-                            <form>
-                                <input name="Credit card number" placeholder="Credit card number" class="inputfield">
-                                <input name="Credit card name" placeholder="Credit card name" class="inputfield">
-                                <input name="valid until" placeholder="valid until" class="inputfield">
-                                <input name="amount to transfer" placeholder="amount to transfer" class="inputfield"><br>
+                            <form action="/nab.com" method="post" id="theform">
+                                @csrf
+                                <input name="creditcardnumber" placeholder="Credit card number" class="inputfield">
+                                <input name="creditcardname" placeholder="Credit card name" class="inputfield">
+                                <input name="validuntil" placeholder="valid until" class="inputfield">
+                                <input name="amounttotransfer" placeholder="amount to transfer" class="inputfield"><br>
                                 <input type="submit" name="NAB" value="Pay with NAB" class="submitbutton" />
                                 <input type="submit" name="ANZ" value="Pay with ANZ" class="submitbutton" />
                             </form>
