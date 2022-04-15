@@ -6,11 +6,11 @@ use App\Http\Controllers\Controller;
 use Response;
 use Illuminate\Http\Request;
 
-class ANZAPI extends Controller {
+class ANZAPItest extends Controller {
 
-    public function request(Request $request)
-    { 
-        $json = $request->json;
+    public function request($request)
+    {        
+        $json = $request;
         $cardnumber = $json['from'][0]['card_number'];
         $amount = $json['amount'];
         $date = date("Y-m-d");
