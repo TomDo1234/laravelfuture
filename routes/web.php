@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NABAPI;
+use App\Http\Controllers\ANZAPI;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +24,4 @@ Route::get('/', function () {
 });
 
 Route::post('/nab.com', [NABAPI::class, 'request']);
+Route::post('/anz.com', [ANZAPI::class, 'request']);

@@ -11,10 +11,13 @@ class ANZAPI extends Controller {
     public function request(Request $request)
     {
         
-        $creditcardnumber = $request->creditcardnumber;
-        $creditcardname = $request->creditcardname;
-        $validuntil = $request->validuntil;
-        $amount = $request->amounttotransfer;
-        print "$creditcardnumber $creditcardname $validuntil $amount";
+        $json = $request->json;
+        $cardnumber = $json['from'][0]['card_number'];
+        $amount = $json['amount'];
+        $date = date("Y-m-d");
+        $time = date("H:i:s");
+        print json_encode(array("from" => array(array("card_number" => $cardnumber))
+        ,"amount" => $amount,"transaction_number" => "abc12345",
+        "transaction_time" => "$date $time"));
     }
 }

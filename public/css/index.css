@@ -12,3 +12,14 @@
     border-radius:10px;
     cursor:pointer;
 }
+
+.responseholder {
+    color:white;
+}
+
+.responseholder h3 {
+    margin:0;
+}
+.responseholder div {
+    word-wrap: break-word;
+}

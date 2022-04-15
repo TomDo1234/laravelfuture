@@ -54,10 +54,14 @@
                                 <input name="creditcardname" placeholder="Credit card name" class="inputfield">
                                 <input name="validuntil" placeholder="valid until" class="inputfield">
                                 <input name="amounttotransfer" placeholder="amount to transfer" class="inputfield"><br>
-                                <input type="submit" name="NAB" value="Pay with NAB" class="submitbutton" />
-                                <input type="submit" name="ANZ" value="Pay with ANZ" class="submitbutton" />
+                                <input type="submit" name="NAB" value="Pay with NAB" class="submitbutton" onclick="company='NAB'"/>
+                                <input type="submit" name="ANZ" value="Pay with ANZ" class="submitbutton" onclick="company='ANZ'"/>
                             </form>
-                        </div>                        
+                        </div>
+                        <div class="p-6 responseholder">
+                            <h3>The Response:</h3>
+                            <div id="theresponse"></div>
+                        </div>                             
                     </div>
                 </div>
 
