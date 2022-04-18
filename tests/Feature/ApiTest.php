@@ -37,7 +37,8 @@ class ApiTest extends TestCase
         </from>
         <amount>1.00</amount>
         <transaction_number>abc1234</transaction_number>
-        <transaction_time>$date $time</transaction_time>";
+        <transaction_time>$date $time</transaction_time>
+        ";
 
         $anzjson = '{
             "from":[
@@ -68,6 +69,7 @@ class ApiTest extends TestCase
          'X-Header' => 'Value',
         ])->post('/nab.com', ['xml' => $nabxml]);
 
-        $response->assertSee($nabexpected,false);
+        $content = $response->getContent();
+        $this->assertEquals($nabexpected,$content);
     }
 }
