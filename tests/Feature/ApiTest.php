@@ -16,8 +16,6 @@ class ApiTest extends TestCase
     
     public function test_apis()
     {
-        $anz = new \App\Http\Controllers\ANZAPItest();
-        $nab = new \App\Http\Controllers\NABAPItest();
         $nabxml  = '<?xml version="1.0" encoding="UTF-8"?>
         <request>
         <from>
@@ -41,8 +39,6 @@ class ApiTest extends TestCase
         <transaction_number>abc1234</transaction_number>
         <transaction_time>$date $time</transaction_time>";
 
-        $this->assertEquals($nabexpected,$nab->request($nabxml));
-
         $anzjson = '{
             "from":[
                {
@@ -60,7 +56,18 @@ class ApiTest extends TestCase
             "merchant_key":"asdf"
          }';
 
-        $anzexpected = '{"from":[{"card_number":"123"}],"amount":1.01,"transaction_number":"abc12345","transaction_time":"' . $date . ' ' . $time . '"}';
-        $this->assertEquals($anzexpected,$anz->request(json_decode($anzjson,TRUE)));
+        $anzexpected = '{"from":[{"card_number":"123"}],"amount":1.01,"transaction_number":"abc12345","transaction_time":"' . $date . ' ' . $time . '"}';        
+
+        $response = $this->withHeaders([
+         'X-Header' => 'Value',
+        ])->post('/anz.com', ['json' => json_decode($anzjson,TRUE)]);
+         
+        $response->assertExactJson(json_decode($anzexpected,TRUE));
+
+        $response = $this->withHeaders([
+         'X-Header' => 'Value',
+        ])->post('/nab.com', ['xml' => $nabxml]);
+
+        $response->assertSee($nabexpected,false);
     }
 }
